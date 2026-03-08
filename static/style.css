@@ -1,0 +1,306 @@
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+
+/* Split screen layout */
+.split-container {
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+/* Left Side - Background Image */
+.left-side {
+    flex: 0 0 65%;
+    background: url("/static/images/image1.png") no-repeat center center;
+    background-size: cover;
+}
+
+/* Right Side - Home Content */
+.right-side {
+    flex: 0 0 35%;
+    padding: 40px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+    max-height: 100vh;
+    box-sizing: border-box;
+}
+
+.right-side h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.right-side p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* Button Styling */
+.btn {
+    padding: 16px 32px;
+    background-color: rgba(40, 167, 69, 0.9);
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: rgba(33, 136, 56, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Form Container */
+body {
+    margin: 0;
+    padding: 0;
+    background: url('your-image-path.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Add this if your form is wrapped in another container */
+main {
+    padding-top: 80px; /* ✅ Add space from the top */
+}
+
+/* Updated Form Container */
+.form-container {
+    max-width: 900px;
+    margin: 60px auto; /* ✅ Add more top margin */
+    padding: 40px 50px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent for depth */
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2); /* More visible shadow */
+    position: relative;
+    z-index: 1;
+}
+
+/* Form Title */
+/* Background image styling */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.background-image {
+  background: url('static/images/lab.png') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(6px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+}
+
+/* Centered form */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+/* Form container */
+.form-container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+/* Form heading */
+.form-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #333;
+}
+
+/* Form labels and inputs */
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+form input[type="number"],
+form select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  appearance: none;
+  background: #fff;
+}
+
+form select:focus,
+form input[type="number"]:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Button styling */
+.btn {
+  margin-top: 25px;
+  padding: 12px;
+  width: 100%;
+  background: #007BFF;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+/* Responsive form */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 30px 20px;
+    margin: 20px 10px;
+  }
+
+  .form-title {
+    font-size: 22px;
+  }
+}
+
+/* Centered Form Title */
+.form-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+
+/* Form Rows for Two-Column Layout */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Form Group (field box) */
+.form-group {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.form-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Input and Select Styling */
+.form-container input,
+.form-container select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    transition: border 0.3s ease;
+}
+
+/* Focused Fields */
+.form-container input:focus,
+.form-container select:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+/* Dropdown placeholder */
+.form-container select:invalid {
+    color: gray;
+}
+
+/* Submit Button Inside Form */
+.form-container button.btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Result Page Styling */
+.result-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;   /* Center horizontally */
+    align-items: center;       /* Center vertically */
+    flex-direction: column;
+    text-align: center;
+    background-color: #f9f9f9; /* Optional: light background */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.result-container p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.result-container .btn {
+    margin-top: 10px;
+    padding: 12px 30px;
+    background: green;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+    .result-container {
+        padding: 10px;
+    }
+}
