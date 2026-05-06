@@ -1,27 +1,42 @@
+import os
+# Suppress TensorFlow warnings/info logs BEFORE importing TF
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'          # Hide INFO/WARNING/ERROR from TF C++
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'          # Disable oneDNN warnings
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'           # Force CPU (skip GPU probe)
+
 from flask import Flask, request, render_template
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import img_to_array   
+from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import Image
 import numpy as np
-import os
 import pickle
+import logging
+
+# Suppress TF Python-level logs
+logging.getLogger('tensorflow').setLevel(logging.ERROR)
+logging.getLogger('absl').setLevel(logging.ERROR)
 
 app = Flask(__name__)
 
-# ---------------- Load Models ---------------- #
+# ---------------- Load Models (lazy) ---------------- #
 CNN_MODEL_PATH = os.path.join("model", "cnn_model.h5")
 RF_MODEL_PATH = os.path.join("model", "random_forest_model.pkl")
 
-# Load CNN model
-cnn_model = load_model(CNN_MODEL_PATH)
-
-# Load RF model safely
+cnn_model = None
 rf_model = None
-if os.path.exists(RF_MODEL_PATH):
-    with open(RF_MODEL_PATH, "rb") as f:
-        rf_model = pickle.load(f)
-else:
-    print("⚠️ Random Forest model file not found!")
+
+def get_cnn_model():
+    global cnn_model
+    if cnn_model is None:
+        cnn_model = load_model(CNN_MODEL_PATH)
+    return cnn_model
+
+def get_rf_model():
+    global rf_model
+    if rf_model is None and os.path.exists(RF_MODEL_PATH):
+        with open(RF_MODEL_PATH, "rb") as f:
+            rf_model = pickle.load(f)
+    return rf_model
 
 # ---------------- Routes ---------------- #
 
@@ -49,7 +64,8 @@ def predict():
             img_array = img_to_array(img)
             img_array = np.expand_dims(img_array, axis=0) / 255.0
 
-            prediction = cnn_model.predict(img_array)
+            model = get_cnn_model()
+            prediction = model.predict(img_array)
             prob = prediction[0][0]
             result = 1 if prob > 0.5 else 0
 
@@ -59,7 +75,8 @@ def predict():
 
         # ✅ CASE 2: Tabular input → RF model
         else:
-            if rf_model is None:
+            model = get_rf_model()
+            if model is None:
                 return render_template("result.html",
                                        prediction="Error: Random Forest model not found on server.")
 
@@ -82,7 +99,7 @@ def predict():
 
             features = np.array(features).reshape(1, -1)
 
-            pred = rf_model.predict(features)[0]
+            pred = model.predict(features)[0]
             message = "Congrats! No heart disease detected." if pred == 0 else "Heart disease detected."
 
             return render_template("result.html", prediction=message)
