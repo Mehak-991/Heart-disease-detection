@@ -1,8 +1,9 @@
 Flask
 Flask-Cors
-numpy == 1.26.4
+numpy==1.26.4
 pandas
 scikit-learn
 joblib
 gunicorn
 Pillow
+tensorflow==2.16.1

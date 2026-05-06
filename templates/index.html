@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Heart Disease Prediction</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <style>
     @keyframes fadeInUp {
       0% {
@@ -45,44 +46,55 @@
         visibility: hidden;
       }
     }
+
+    /* Loading overlay */
+    .loader-overlay {
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </head>
-<body class="min-h-screen flex bg-gray-100 relative">
+<body>
 
   <!-- Loading Overlay -->
-  <div id="loader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+  <div id="loader" class="loader-overlay">
     <div class="loader"></div>
   </div>
 
-  <!-- Left side with background image -->
-  <div class="w-1/2 bg-cover bg-center hidden md:block shadow-lg" style="background-image: url('/static/images/image1.png');">
-  </div>
+  <!-- Split Layout -->
+  <div class="split-container">
+    <!-- Left side with background image -->
+    <div class="left-side"></div>
 
-  <!-- Right side content -->
-  <div class="w-full md:w-1/2 flex items-center justify-center bg-white p-10">
-    <div class="max-w-xl w-full space-y-6">
+    <!-- Right side content -->
+    <div class="right-side">
 
-      <h1 class="text-4xl font-bold text-gray-900 animate-fadeInUp">
+      <h1 class="animate-fadeInUp">
         Heart Disease Detection Made Simple
       </h1>
 
-      <p class="text-gray-700 text-lg leading-relaxed animate-fadeInUp" style="animation-delay: 0.1s;">
-        Heart-related problems are becoming more common in today’s fast-paced world. We believe that early detection plays a key role in preventing serious health issues and ensuring timely care.
+      <p class="animate-fadeInUp" style="animation-delay: 0.1s;">
+        Heart-related problems are becoming more common in today's fast-paced world. We believe that early detection plays a key role in preventing serious health issues and ensuring timely care.
       </p>
 
-      <p class="text-gray-700 text-lg leading-relaxed animate-fadeInUp" style="animation-delay: 0.2s;">
-        That’s why we’ve made the process of understanding your heart health easier than ever. No complex steps—just a few simple inputs and you’ll quickly know if there’s a reason to be concerned.
+      <p class="animate-fadeInUp" style="animation-delay: 0.2s;">
+        That's why we've made the process of understanding your heart health easier than ever. No complex steps—just a few simple inputs and you'll quickly know if there's a reason to be concerned.
       </p>
 
-      <p class="text-gray-900 font-semibold animate-fadeInUp" style="animation-delay: 0.3s;">
+      <p class="animate-fadeInUp" style="animation-delay: 0.3s; font-weight: 600;">
         Start your checkup by just clicking on the button below.
       </p>
 
       <!-- Centered Button -->
-      <div class="flex justify-center animate-fadeInUp" style="animation-delay: 0.4s;">
+      <div class="animate-fadeInUp" style="animation-delay: 0.4s; text-align: center;">
         <a 
           href="{{ url_for('form') }}"
-          class="px-8 py-3 bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out"
+          class="btn"
         >
           Let's Predict Your Health
         </a>
@@ -95,7 +107,11 @@
     // Hide loader when page is fully loaded
     window.addEventListener("load", () => {
       const loader = document.getElementById("loader");
+      loader.style.pointerEvents = "none";
       loader.classList.add("fade-out");
+      loader.addEventListener("animationend", () => {
+        loader.style.display = "none";
+      });
     });
   </script>
 
