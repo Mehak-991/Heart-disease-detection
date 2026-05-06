@@ -4,19 +4,72 @@
     <meta charset="UTF-8">
     <title>Prediction Result</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="data:," />
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom right, #f3f4f6, #e5e7eb);
+        }
+
+        .result-card {
+            background: #fff;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 448px;
+            text-align: center;
+        }
+
+        .result-card h1 {
+            font-size: 1.875rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+
+        .result-card p {
+            font-size: 1.25rem;
+            color: #374151;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #16a34a;
+            color: #fff;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #15803d;
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen flex items-center justify-center">
+<body>
 
-    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
-        <h1 class="text-3xl font-semibold text-gray-800 mb-4">Prediction Result</h1>
+    <div class="result-card">
+        <h1>Prediction Result</h1>
 
-        <p class="text-xl text-gray-700 font-medium mb-6">
-            {{ prediction }}
-        </p>
+        <p>{{ prediction }}</p>
 
-        <a href="{{ url_for('form') }}" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition duration-300">
+        <a href="{{ url_for('form') }}" class="back-btn">
             Go Back
         </a>
     </div>
