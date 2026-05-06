@@ -1,5 +1,5 @@
 # ---------------- Base Image ----------------
-FROM tensorflow/tensorflow:2.16.1
+FROM python:3.12-slim
 
 # ---------------- Set Work Directory ----------------
 WORKDIR /app
@@ -17,11 +17,8 @@ RUN apt-get update && apt-get install -y \
 
 # ---------------- Install Python Dependencies ----------------
 COPY requirements.txt .
-
-# ✅ Force python app.pyNumPy < 2.0 to fix TensorFlow compatibility
 RUN pip install --upgrade pip \
-    && pip install --no-cache-dir numpy==1.26.4 \
-    && pip install --no-cache-dir --ignore-installed -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt
 
 # ---------------- Copy Project Files ----------------
 COPY . .
